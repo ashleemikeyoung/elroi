@@ -1,5 +1,5 @@
-import { Goose, Rain } from './icons/Goose';
 import { cn } from '../utils';
+import ElRoiLogo from '../images/elroi-logo.png';
 
 interface GooseLogoProps {
   className?: string;
@@ -14,14 +14,12 @@ export default function GooseLogo({
 }: GooseLogoProps) {
   const sizes = {
     default: {
-      frame: 'w-16 h-16',
-      rain: 'w-[275px] h-[275px]',
-      goose: 'w-16 h-16',
+      frame: 'w-28 h-10',
+      logo: 'w-28 h-10',
     },
     small: {
-      frame: 'w-8 h-8',
-      rain: 'w-[150px] h-[150px]',
-      goose: 'w-8 h-8',
+      frame: 'w-16 h-6',
+      logo: 'w-16 h-6',
     },
   } as const;
 
@@ -32,18 +30,19 @@ export default function GooseLogo({
       className={cn(
         className,
         currentSize.frame,
-        'relative overflow-hidden',
+        'relative overflow-hidden flex items-center justify-center',
         hover && 'group/with-hover'
       )}
     >
-      <Rain
+      <img
+        src={ElRoiLogo}
+        alt="ElRoi"
         className={cn(
-          currentSize.rain,
-          'absolute left-0 bottom-0 transition-all duration-300 z-1',
-          hover && 'opacity-0 group-hover/with-hover:opacity-100'
+          currentSize.logo,
+          'object-contain transition-opacity duration-300',
+          hover && 'group-hover/with-hover:opacity-90'
         )}
       />
-      <Goose className={cn(currentSize.goose, 'absolute left-0 bottom-0 z-2')} />
     </div>
   );
 }

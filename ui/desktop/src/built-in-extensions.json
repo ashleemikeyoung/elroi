@@ -29,9 +29,20 @@
   {
     "id": "memory",
     "name": "Memory",
-    "description": "Teach goose your preferences as you go.",
+    "description": "Teach ElRoi your preferences as you go.",
     "enabled": false,
     "type": "builtin",
+    "env_keys": [],
+    "timeout": 300
+  },
+  {
+    "id": "rag",
+    "name": "rag",
+    "description": "Search, read, summarize, and ask questions over ElRoi's local RAG index.",
+    "enabled": true,
+    "type": "stdio",
+    "cmd": "/opt/anaconda3/envs/rag/bin/python",
+    "args": ["/Users/ash/Development/RAG/mcp_server.py"],
     "env_keys": [],
     "timeout": 300
   },

@@ -7,6 +7,8 @@ const isLinuxVulkanBuild = process.env.GOOSE_DESKTOP_LINUX_VARIANT === 'vulkan';
 let cfg = {
   asar: true,
   extraResource: ['src/bin', 'src/images', 'src/app-update.yml'],
+  name: process.env.GOOSE_BUNDLE_NAME || 'ElRoi',
+  executableName: process.env.GOOSE_EXECUTABLE_NAME || 'ElRoi',
   icon: 'src/images/icon',
   // Windows specific configuration
   win32: {
@@ -19,7 +21,7 @@ let cfg = {
   // Protocol registration
   protocols: [
     {
-      name: 'GooseProtocol',
+      name: 'ElRoiProtocol',
       schemes: ['goose'],
     },
   ],
@@ -36,9 +38,9 @@ let cfg = {
     ],
     // Usage descriptions for macOS TCC (Transparency, Consent, and Control)
     NSMicrophoneUsageDescription:
-      'Goose needs access to your microphone for voice dictation.',
+      'ElRoi needs access to your microphone for voice dictation.',
     NSAppleEventsUsageDescription:
-      'Goose needs access to send Apple Events to control other apps on your behalf.',
+      'ElRoi needs access to send Apple Events to control other apps on your behalf.',
   },
 };
 
@@ -65,7 +67,7 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: process.env.GITHUB_OWNER || 'aaif-goose',
+          owner: process.env.GITHUB_OWNER || 'ashleemikeyoung',
           name: process.env.GITHUB_REPO || 'goose',
         },
         prerelease: false,
@@ -87,10 +89,10 @@ module.exports = {
     {
       name: '@electron-forge/maker-deb',
       config: {
-        name: 'Goose',
-        bin: 'Goose',
+        name: 'ElRoi',
+        bin: 'ElRoi',
         maintainer: 'AAIF (Agentic AI Foundation)',
-        homepage: 'https://goose-docs.ai/',
+        homepage: 'https://github.com/ashleemikeyoung/goose',
         categories: ['Development'],
         desktopTemplate: './forge.deb.desktop',
         options: {
@@ -103,10 +105,10 @@ module.exports = {
     {
       name: '@electron-forge/maker-rpm',
       config: {
-        name: 'Goose',
-        bin: 'Goose',
+        name: 'ElRoi',
+        bin: 'ElRoi',
         maintainer: 'AAIF (Agentic AI Foundation)',
-        homepage: 'https://goose-docs.ai/',
+        homepage: 'https://github.com/ashleemikeyoung/goose',
         categories: ['Development'],
         desktopTemplate: './forge.rpm.desktop',
         options: {
@@ -120,17 +122,17 @@ module.exports = {
       name: '@electron-forge/maker-flatpak',
       config: {
         options: {
-          id: 'io.github.block.Goose', // NOTE: kept for backwards compat with existing installs
+          id: 'io.github.ashleemikeyoung.ElRoi',
           categories: ['Development'],
           mimeType: ['x-scheme-handler/goose'],
           icon: {
             scalable: 'src/images/icon.svg',
             '512x512': 'src/images/icon-512.png',
           },
-          homepage: 'https://goose-docs.ai/',
+          homepage: 'https://github.com/ashleemikeyoung/goose',
           runtimeVersion: '25.08',
           baseVersion: '25.08',
-          bin: 'Goose',
+          bin: 'ElRoi',
           modules: [
             {
               name: 'libbz2-shim',

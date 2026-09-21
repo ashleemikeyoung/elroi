@@ -1,0 +1,4 @@
+GOOSE_PROVIDER: ollama
+GOOSE_MODEL: qwen2.5-coder:32b
+OLLAMA_HOST: http://localhost:11434
+GOOSE_DISABLE_TELEMETRY: "1"

@@ -43,7 +43,7 @@ const i18n = defineMessages({
   noAppsDescription: {
     id: 'appsView.noAppsDescription',
     defaultMessage:
-      'Open a chat and ask goose for the app you want to have. It can build one for you and that will appear here. Or if somebody shared an app, you can import it using the button above.',
+      'Open a chat and ask ElRoi for the app you want to have. It can build one for you and that will appear here. Or if somebody shared an app, you can import it using the button above.',
   },
   customApp: {
     id: 'appsView.customApp',

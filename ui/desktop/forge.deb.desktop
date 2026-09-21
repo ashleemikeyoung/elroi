@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=Goose
-Exec=/usr/lib/goose/Goose %U
-Icon=/usr/share/pixmaps/goose.png
+Name=ElRoi
+Exec=/usr/lib/elroi/ElRoi %U
+Icon=/usr/share/pixmaps/elroi.png
 Terminal=false
 Type=Application
 Categories=Development;
