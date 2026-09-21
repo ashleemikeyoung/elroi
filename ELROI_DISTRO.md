@@ -19,3 +19,20 @@ args:
 
 The server must keep stdout reserved for MCP protocol messages. Human-readable
 startup logging belongs on stderr.
+
+## Local Installation
+
+Use the helper script to build the branded CLI and package the desktop app:
+
+```bash
+scripts/install-elroi.sh
+```
+
+By default this installs:
+
+- `~/.local/bin/elroi`
+- `~/Applications/ElRoi.app` on macOS
+
+The desktop app launches the staged `ui/desktop/src/bin/elroi` backend binary.
+Use `scripts/install-elroi.sh --cli-only` when you only want to refresh the
+terminal command.

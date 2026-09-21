@@ -1,17 +1,23 @@
-# goose Desktop App
+# ElRoi Desktop App
 
-Native desktop app for goose built with [Electron](https://www.electronjs.org/) and [ReactJS](https://react.dev/). 
+Native desktop app for ElRoi built with [Electron](https://www.electronjs.org/) and [ReactJS](https://react.dev/). This fork is powered by goose and keeps the upstream license and attribution intact.
 
 # Building and running
 goose uses [Hermit](https://github.com/cashapp/hermit) to manage dependencies, so you will need to have it installed and activated.
 
 ```
-git clone git@github.com:aaif-goose/goose.git
+git clone git@github.com:ashleemikeyoung/goose.git
 cd goose
 source ./bin/activate-hermit
 cd ui/desktop
 pnpm install
 pnpm run start
+```
+
+For the branded local distribution, prefer the root helper:
+
+```bash
+scripts/install-elroi.sh
 ```
 
 ## Platform-specific build requirements
@@ -36,14 +42,14 @@ sudo dnf install dpkg-dev fakeroot
 
 # Building notes
 
-This is an Electron Forge app using Vite and React. The desktop app launches the bundled `goose` CLI binary and talks to its ACP server.
+This is an Electron Forge app using Vite and React. The desktop app launches the bundled `elroi` CLI binary and talks to its ACP server.
 
 ## Building for different platforms
 
 ### macOS
-`pnpm run bundle:default` will give you a goose.app/zip which is signed/notarized but only if you set up the env vars as per `forge.config.ts` (you can empty out the section on osxSign if you don't want to sign it) - this will have all defaults.
+`pnpm run bundle:default` will give you an ElRoi.app/zip which is signed/notarized but only if you set up the env vars as per `forge.config.ts` (you can empty out the section on osxSign if you don't want to sign it) - this will have all defaults.
 
-`pnpm run bundle:preconfigured` will make a goose.app/zip signed and notarized, but use the following:
+`pnpm run bundle:preconfigured` will make an ElRoi.app/zip signed and notarized, but use the following:
 
 ```python
             f"        process.env.GOOSE_PROVIDER__TYPE = '{os.getenv("GOOSE_BUNDLE_TYPE")}';",
@@ -51,7 +57,7 @@ This is an Electron Forge app using Vite and React. The desktop app launches the
             f"        process.env.GOOSE_PROVIDER__MODEL = '{os.getenv("GOOSE_BUNDLE_MODEL")}';"
 ```
 
-This allows you to set for example GOOSE_PROVIDER__TYPE to be "databricks" by default if you want (so when people start goose.app - they will get that out of the box). There is no way to set an api key in that bundling as that would be a terrible idea, so only use providers that can do oauth (like databricks can), otherwise stick to default goose.
+This allows you to set for example GOOSE_PROVIDER__TYPE to be "databricks" by default if you want. There is no way to set an api key in that bundling as that would be a terrible idea, so only use providers that can do oauth (like databricks can), otherwise stick to the default ElRoi config.
 
 ### Linux
 For Linux builds, first ensure you have the required system dependencies installed (see above), then:
@@ -59,13 +65,13 @@ For Linux builds, first ensure you have the required system dependencies install
 1. Build the Rust binary:
 ```bash
 cd ../..  # Go to project root
-cargo build --release -p goose-cli --bin goose
+cargo build --release -p goose-cli --bin elroi
 ```
 
 2. Copy the binary to the expected location:
 ```bash
 mkdir -p src/bin
-cp ../../target/release/goose src/bin/
+cp ../../target/release/elroi src/bin/
 ```
 
 3. Build the application:
@@ -93,7 +99,7 @@ Electron Forge writes packages to architecture-specific directories:
 | DEB | `out/make/deb/x64/*_amd64.deb` | `out/make/deb/arm64/*_arm64.deb` |
 | RPM | `out/make/rpm/x64/*.x86_64.rpm` | `out/make/rpm/arm64/*.arm64.rpm` |
 | Flatpak | `out/make/flatpak/x86_64/*.flatpak` | `out/make/flatpak/aarch64/*.flatpak` |
-| Application | `out/Goose-linux-x64/` | `out/Goose-linux-arm64/` |
+| Application | `out/ElRoi-linux-x64/` | `out/ElRoi-linux-arm64/` |
 
 ### Windows
 Use the existing Windows build process as documented.
@@ -104,7 +110,7 @@ Use the existing Windows build process as documented.
 From the project root, start the ACP backend:
 
 ```bash
-GOOSE_SERVER__SECRET_KEY=test cargo run -p goose-cli --bin goose -- serve --platform desktop --enable-scheduler --host 127.0.0.1 --port 3000
+GOOSE_SERVER__SECRET_KEY=test cargo run -p goose-cli --bin elroi -- serve --platform desktop --enable-scheduler --host 127.0.0.1 --port 3000
 ```
 
 Then start the desktop app from `ui/desktop`:

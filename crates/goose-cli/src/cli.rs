@@ -67,7 +67,7 @@ impl From<ServePlatform> for GoosePlatform {
 }
 
 #[derive(Parser)]
-#[command(name = "goose", author, version, display_name = "", about, long_about = None)]
+#[command(name = "elroi", author, version, display_name = "", about, long_about = None)]
 pub struct Cli {
     #[command(subcommand)]
     command: Option<Command>,
@@ -134,7 +134,7 @@ pub struct SessionOptions {
         long = "container",
         value_name = "CONTAINER_ID",
         help = "Docker container ID to run extensions inside",
-        long_help = "Run extensions (stdio and built-in) inside the specified container. The extension must exist in the container. For built-in extensions, goose must be installed inside the container."
+        long_help = "Run extensions (stdio and built-in) inside the specified container. The extension must exist in the container. For built-in extensions, ElRoi must be installed inside the container."
     )]
     pub container: Option<String>,
 }
@@ -197,7 +197,7 @@ pub struct ExtensionOptions {
         long = "with-builtin",
         value_name = "NAME",
         help = "Add builtin extensions by name (e.g., 'developer' or multiple: 'developer,github')",
-        long_help = "Add one or more builtin extensions that are bundled with goose by specifying their names, comma-separated",
+        long_help = "Add one or more builtin extensions that are bundled with ElRoi by specifying their names, comma-separated",
         value_delimiter = ','
     )]
     pub builtins: Vec<String>,
@@ -228,8 +228,8 @@ pub struct InputOptions {
         short = 't',
         long = "text",
         value_name = "TEXT",
-        help = "Input text to provide to goose directly",
-        long_help = "Input text containing commands for goose. Use this in lieu of the instructions argument.",
+        help = "Input text to provide to ElRoi directly",
+        long_help = "Input text containing commands for ElRoi. Use this in lieu of the instructions argument.",
         conflicts_with = "instructions",
         conflicts_with = "recipe"
     )]
@@ -728,8 +728,8 @@ enum PluginCommand {
 
 #[derive(Subcommand)]
 enum SkillsCommand {
-    /// List all skills available to the goose agent
-    #[command(about = "List all skills available to the goose agent")]
+    /// List all skills available to the ElRoi agent
+    #[command(about = "List all skills available to the ElRoi agent")]
     List,
 }
 
@@ -801,12 +801,12 @@ enum RecipeCommand {
 
 #[derive(Subcommand)]
 enum Command {
-    /// Configure goose settings
-    #[command(about = "Configure goose settings")]
+    /// Configure ElRoi settings
+    #[command(about = "Configure ElRoi settings")]
     Configure {},
 
-    /// Display goose configuration information
-    #[command(about = "Display goose information")]
+    /// Display ElRoi configuration information
+    #[command(about = "Display ElRoi information")]
     Info {
         /// Show verbose information including current configuration
         #[arg(short, long, help = "Show verbose information including config.yaml")]
@@ -815,25 +815,25 @@ enum Command {
         check: bool,
     },
 
-    #[command(about = "Check that your Goose setup is working")]
+    #[command(about = "Check that your ElRoi setup is working")]
     Doctor {},
 
     /// Manage system prompts and behaviors
-    #[command(about = "Run one of the mcp servers bundled with goose")]
+    #[command(about = "Run one of the mcp servers bundled with ElRoi")]
     Mcp {
         #[arg(value_parser = clap::value_parser!(McpCommand))]
         server: McpCommand,
     },
 
-    /// Run goose as an ACP (Agent Client Protocol) agent
-    #[command(about = "Run goose as an ACP agent server on stdio")]
+    /// Run ElRoi as an ACP (Agent Client Protocol) agent
+    #[command(about = "Run ElRoi as an ACP agent server on stdio")]
     Acp {
         /// Add builtin extensions by name
         #[arg(
             long = "with-builtin",
             value_name = "NAME",
             help = "Add builtin extensions by name (e.g., 'developer' or multiple: 'developer,github')",
-            long_help = "Add one or more builtin extensions that are bundled with goose by specifying their names, comma-separated",
+            long_help = "Add one or more builtin extensions that are bundled with ElRoi by specifying their names, comma-separated",
             value_delimiter = ','
         )]
         builtins: Vec<String>,
@@ -875,7 +875,7 @@ enum Command {
             long = "with-builtin",
             value_name = "NAME",
             help = "Add builtin extensions by name (e.g., 'developer' or multiple: 'developer,github')",
-            long_help = "Add one or more builtin extensions that are bundled with goose by specifying their names, comma-separated",
+            long_help = "Add one or more builtin extensions that are bundled with ElRoi by specifying their names, comma-separated",
             value_delimiter = ',',
             action = clap::ArgAction::Append
         )]
@@ -1036,35 +1036,35 @@ enum Command {
         command: GatewayCommand,
     },
 
-    /// Update the goose CLI version
+    /// Update the ElRoi CLI version
     #[cfg(feature = "update")]
-    #[command(about = "Update the goose CLI version")]
+    #[command(about = "Update the ElRoi CLI version")]
     Update {
         /// Update to canary version
         #[arg(
             short,
             long,
             help = "Update to canary version",
-            long_help = "Update to the latest canary version of the goose CLI, otherwise updates to the latest stable version."
+            long_help = "Update to the latest canary version of the ElRoi CLI, otherwise updates to the latest stable version."
         )]
         canary: bool,
 
-        /// Enforce to re-configure goose during update
-        #[arg(short, long, help = "Enforce to re-configure goose during update")]
+        /// Enforce to re-configure ElRoi during update
+        #[arg(short, long, help = "Enforce to re-configure ElRoi during update")]
         reconfigure: bool,
     },
 
     /// Terminal-integrated session (one session per terminal)
     #[command(
-        about = "Terminal-integrated goose session",
-        long_about = "Runs a goose session tied to your terminal window.\n\
+        about = "Terminal-integrated ElRoi session",
+        long_about = "Runs an ElRoi session tied to your terminal window.\n\
                       Each terminal maintains its own persistent session that resumes automatically.\n\n\
                       Setup:\n  \
-                        eval \"$(goose term init zsh)\"  # zsh/bash\n  \
-                        let init = ($nu.cache-dir | path join \"goose-term-init.nu\"); ^goose term init nu | save --force $init; source $init\n\n\
+                        eval \"$(elroi term init zsh)\"  # zsh/bash\n  \
+                        let init = ($nu.cache-dir | path join \"elroi-term-init.nu\"); ^elroi term init nu | save --force $init; source $init\n\n\
                       Usage:\n  \
-                        goose term run \"list files in this directory\"\n  \
-                        @goose \"create a python script\"  # using alias\n  \
+                        elroi term run \"list files in this directory\"\n  \
+                        @elroi \"create a python script\"  # using alias\n  \
                         @g \"quick question\"  # short alias"
     )]
     Term {
@@ -1088,7 +1088,7 @@ enum Command {
         #[arg(value_enum)]
         shell: CompletionShell,
 
-        #[arg(long, default_value = "goose", help = "Provide a custom binary name")]
+        #[arg(long, default_value = "elroi", help = "Provide a custom binary name")]
         bin_name: String,
     },
 
@@ -1097,8 +1097,8 @@ enum Command {
     /// Discovers `**/.agents/checks/*.md` subagent reviewers and
     /// `**/.agents/REVIEW.md` scoped prompt overrides, builds a review
     /// request from the working tree (or an explicit diff range), and
-    /// runs the review through goose.
-    #[command(about = "Review the current diff using goose")]
+    /// runs the review through ElRoi.
+    #[command(about = "Review the current diff using ElRoi")]
     Review {
         /// Diff range to review (e.g. "main...HEAD"). Defaults to the working
         /// tree vs HEAD.
@@ -1278,17 +1278,17 @@ enum TermCommand {
     #[command(
         about = "Print shell initialization script",
         long_about = "Prints shell configuration to set up terminal-integrated sessions.\n\
-                      Each terminal gets a persistent goose session that automatically resumes.\n\n\
+                      Each terminal gets a persistent ElRoi session that automatically resumes.\n\n\
                       Setup:\n  \
-                        echo 'eval \"$(goose term init zsh)\"' >> ~/.zshrc\n  \
+                        echo 'eval \"$(elroi term init zsh)\"' >> ~/.zshrc\n  \
                         source ~/.zshrc\n\n\
                         Nushell:\n  \
-                        let init = ($nu.cache-dir | path join \"goose-term-init.nu\")\n  \
-                        ^goose term init nu | save --force $init\n  \
+                        let init = ($nu.cache-dir | path join \"elroi-term-init.nu\")\n  \
+                        ^elroi term init nu | save --force $init\n  \
                         source $init\n\n\
-                      With --default (anything typed that isn't a command goes to goose):\n  \
-                        echo 'eval \"$(goose term init zsh --default)\"' >> ~/.zshrc\n  \
-                        ^goose term init nu --default | save --force $init"
+                      With --default (anything typed that isn't a command goes to ElRoi):\n  \
+                        echo 'eval \"$(elroi term init zsh --default)\"' >> ~/.zshrc\n  \
+                        ^elroi term init nu --default | save --force $init"
     )]
     Init {
         /// Shell type (bash, zsh, fish, nu, powershell)
@@ -1298,11 +1298,11 @@ enum TermCommand {
         #[arg(short, long, help = "Name for the terminal session")]
         name: Option<String>,
 
-        /// Make goose the default handler for unknown commands
+        /// Make ElRoi the default handler for unknown commands
         #[arg(
             long = "default",
-            help = "Make goose the default handler for unknown commands",
-            long_help = "When enabled, anything you type that isn't a valid command will be sent to goose. Supported for zsh, bash, and nu."
+            help = "Make ElRoi the default handler for unknown commands",
+            long_help = "When enabled, anything you type that isn't a valid command will be sent to ElRoi. Supported for zsh, bash, and nu."
         )]
         default: bool,
     },

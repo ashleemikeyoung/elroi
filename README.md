@@ -1,8 +1,8 @@
 <div align="center">
 
-# goose
+# ElRoi
 
-_your native open source AI agent — desktop app, CLI, and API — for code, workflows, and everything in between_
+_Ashlee's native local AI workspace — desktop app, CLI, and API — powered by goose_
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"
@@ -20,23 +20,23 @@ _your native open source AI agent — desktop app, CLI, and API — for code, wo
 </div>
 
 
-goose is a general-purpose AI agent that runs on your machine. Not just for code — use it for research, writing, automation, data analysis, or anything you need to get done.
+ElRoi is a custom, locally branded distribution of the open-source goose project. It keeps upstream Apache 2.0 attribution and legal notices intact while using ElRoi naming, icons, defaults, and bundled local RAG integration.
 
 A native desktop app for macOS, Linux, and Windows. A full CLI for terminal workflows. An API to embed it anywhere. Built in Rust for performance and portability.
 
-goose works with 15+ providers — Anthropic, OpenAI, Google, Ollama, OpenRouter, Azure, Bedrock, and more. Use API keys or your existing Claude, ChatGPT, or Gemini subscriptions via [ACP](https://goose-docs.ai/docs/guides/acp-providers). Connect to 70+ extensions via the [Model Context Protocol](https://modelcontextprotocol.io/) open standard.
+The default ElRoi configuration points at local Ollama and bundles the local RAG MCP server. The underlying goose provider and extension system remains available for Anthropic, OpenAI, Google, Ollama, OpenRouter, Azure, Bedrock, ACP providers, and Model Context Protocol extensions.
 
 goose is part of the [Agentic AI Foundation (AAIF)](https://aaif.io/) at the Linux Foundation.
 
 # Get started
 
-**[Download the desktop app](https://goose-docs.ai/docs/getting-started/installation)** for macOS, Linux, and Windows.
-
-Or install the CLI:
+Build and install both branded local apps from this fork:
 
 ```bash
-curl -fsSL https://github.com/aaif-goose/goose/releases/download/stable/download_cli.sh | bash
+scripts/install-elroi.sh
 ```
+
+That installs `elroi` into `~/.local/bin` and, on macOS, installs `ElRoi.app` into `~/Applications`.
 
 # Quick links
 - [Quickstart](https://goose-docs.ai/docs/quickstart)

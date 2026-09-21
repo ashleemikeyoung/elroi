@@ -15,8 +15,8 @@ export interface Logger {
 }
 
 export const defaultLogger: Logger = {
-  info: (...args) => console.log('[goose-serve]', ...args),
-  error: (...args) => console.error('[goose-serve]', ...args),
+  info: (...args) => console.log('[elroi-serve]', ...args),
+  error: (...args) => console.error('[elroi-serve]', ...args),
 };
 
 export interface FindGooseBinaryOptions {
@@ -77,7 +77,7 @@ export const findGooseBinaryPath = (options: FindGooseBinaryOptions = {}): strin
     throw new Error(`Invalid GOOSE_BINARY path: ${pathFromEnv} (pwd is ${process.cwd()})`);
   }
 
-  const binaryName = process.platform === 'win32' ? 'goose.exe' : 'goose';
+  const binaryName = process.platform === 'win32' ? 'elroi.exe' : 'elroi';
   const possiblePaths: string[] = [];
 
   if (isPackaged && resourcesPath) {
@@ -98,7 +98,7 @@ export const findGooseBinaryPath = (options: FindGooseBinaryOptions = {}): strin
   }
 
   throw new Error(
-    `Goose binary not found in any of the possible paths: ${possiblePaths.join(', ')}`
+    `ElRoi binary not found in any of the possible paths: ${possiblePaths.join(', ')}`
   );
 };
 

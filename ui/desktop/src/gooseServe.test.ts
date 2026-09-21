@@ -4,7 +4,7 @@ import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { buildLocalServeUrls, findGooseBinaryPath, startGooseServe } from './gooseServe';
 
-const binaryName = process.platform === 'win32' ? 'goose.exe' : 'goose';
+const binaryName = process.platform === 'win32' ? 'elroi.exe' : 'elroi';
 const tempDirs: string[] = [];
 const originalCwd = process.cwd();
 type ReadinessFetchInit = Parameters<typeof globalThis.fetch>[1];
@@ -86,7 +86,7 @@ describe('findGooseBinaryPath', () => {
     expect(fs.realpathSync(resolvedPath)).not.toBe(fs.realpathSync(debugPath));
   });
 
-  it('uses the bundled goose binary in packaged builds', () => {
+  it('uses the bundled ElRoi binary in packaged builds', () => {
     const tempDir = makeTempDir();
     const resourcesPath = path.join(tempDir, 'resources');
     const bundledPath = makeFile(path.join(resourcesPath, 'bin', binaryName));

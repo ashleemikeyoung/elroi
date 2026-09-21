@@ -424,8 +424,8 @@ async fn handle_existing_config() -> anyhow::Result<()> {
         .item("remove", "Remove Extension", "Remove an extension")
         .item(
             "settings",
-            "goose settings",
-            "Set the goose mode, Tool Output, Tool Permissions, Experiment, goose recipe github repo and more",
+            "ElRoi settings",
+            "Set the ElRoi mode, Tool Output, Tool Permissions, Experiment, recipe GitHub repo and more",
         )
         .interact()?;
 
