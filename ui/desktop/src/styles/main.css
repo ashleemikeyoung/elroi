@@ -185,6 +185,11 @@
 
   --color-inline-code: #c2410c;
 
+  /* ElRoi wordmark */
+  --elroi-logo-ink: var(--color-text-primary);
+  --elroi-logo-accent: var(--color-text-info);
+  --elroi-logo-muted: var(--color-text-tertiary);
+
   /* Search highlighting */
   --highlight-color: rgba(255, 213, 0, 0.5);
   --highlight-current: rgba(252, 213, 3, 0.6);
@@ -211,6 +216,11 @@
   --text-danger: var(--color-red-100);
 
   --color-inline-code: #ff7235;
+
+  /* ElRoi wordmark */
+  --elroi-logo-ink: var(--color-text-primary);
+  --elroi-logo-accent: var(--color-text-info);
+  --elroi-logo-muted: var(--color-text-tertiary);
 
   /* Search highlighting */
   --highlight-color: rgba(255, 213, 0, 0.5);
@@ -988,4 +998,28 @@ pre:has(> code.bg-inline-code) {
 [data-theme='aura'] .user-message-bubble {
   background-color: #393647;
   color: #edecee;
+}
+
+[data-theme='aura'] {
+  --elroi-logo-ink: #edecee;
+  --elroi-logo-accent: #a277ff;
+  --elroi-logo-muted: #8a8282;
+}
+
+[data-theme='pink'] {
+  --elroi-logo-ink: #2e1e24;
+  --elroi-logo-accent: #b3187f;
+  --elroi-logo-muted: #7c5e67;
+}
+
+[data-theme='grass'] {
+  --elroi-logo-ink: #fff0a5;
+  --elroi-logo-accent: #f0a17c;
+  --elroi-logo-muted: #d8cc86;
+}
+
+[data-theme='ocean'] {
+  --elroi-logo-ink: #ffffff;
+  --elroi-logo-accent: #d5e1ff;
+  --elroi-logo-muted: #9fb7f0;
 }

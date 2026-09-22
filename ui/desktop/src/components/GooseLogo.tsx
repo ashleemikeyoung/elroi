@@ -45,7 +45,7 @@ export default function GooseLogo({
     >
       <span
         className={cn(
-          'inline-flex items-center whitespace-nowrap text-[#16191a] dark:text-[#e6e8e3]',
+          'inline-flex items-center whitespace-nowrap text-[var(--elroi-logo-ink)]',
           'transition-opacity duration-300',
           hover && 'group-hover/with-hover:opacity-90'
         )}
@@ -61,7 +61,7 @@ export default function GooseLogo({
           viewBox="0 0 457 562"
           aria-hidden="true"
           focusable="false"
-          className="mr-[0.28em] shrink-0 text-[#26478d] dark:text-[#8fabe0]"
+          className="mr-[0.28em] shrink-0 text-[var(--elroi-logo-accent)]"
           style={{
             height: LEAF_SIZES[size],
             width: 'auto',
@@ -73,14 +73,14 @@ export default function GooseLogo({
         </svg>
         El
         <span
-          className="text-[#26478d] dark:text-[#8fabe0]"
+          className="text-[var(--elroi-logo-accent)]"
           style={{ fontVariantCaps: 'small-caps', letterSpacing: 0 }}
         >
           Roi
         </span>
         <span
           aria-hidden="true"
-          className="text-[#626a65] dark:text-[#909891]"
+          className="text-[var(--elroi-logo-muted)]"
           style={{
             fontSize: '.56em',
             verticalAlign: '.61em',

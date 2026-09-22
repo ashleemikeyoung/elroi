@@ -48,6 +48,8 @@ export CARGO_HOME="$repo_root/.hermit/rust"
 export COREPACK_HOME="$repo_root/.hermit/node"
 export NPM_CONFIG_CACHE="$repo_root/.hermit/node/cache"
 export NPM_CONFIG_PREFIX="$repo_root/.hermit/node"
+export CI="${CI:-true}"
+export PNPM_CONFIG_CONFIRM_MODULES_PURGE="${PNPM_CONFIG_CONFIRM_MODULES_PURGE:-false}"
 export PATH="$repo_root/.hermit/rust/bin:$repo_root/.hermit/pnpm:$repo_root/node_modules/.bin:$repo_root/.hermit/node/bin:$repo_root/bin:$PATH"
 
 echo "Building ElRoi CLI..."
