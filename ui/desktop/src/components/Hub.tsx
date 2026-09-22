@@ -220,7 +220,7 @@ export default function Hub({
   return (
     <div className="flex flex-col h-full min-h-0 items-center justify-center px-6 relative">
       <div className="w-full max-w-3xl">
-        <div className="flex items-baseline gap-2 mb-1">
+        <div className="flex items-baseline justify-center gap-2 mb-1 text-center">
           <span className="text-6xl font-light text-text-primary tracking-tight tabular-nums">
             {time}
           </span>
@@ -228,7 +228,7 @@ export default function Hub({
             <span className="text-2xl font-light text-text-secondary">{meridiem}</span>
           ) : null}
         </div>
-        <p className="text-xl text-text-secondary mb-6">{greeting}</p>
+        <p className="text-xl text-text-secondary text-center mb-6">{greeting}</p>
 
         <ChatInputCard>
           <ChatInput
