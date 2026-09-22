@@ -11,7 +11,6 @@ import { useCallback, useEffect, useMemo, useRef, useState, type RefObject } fro
 import { defineMessages, useIntl } from '../i18n';
 import { AppEvents } from '../constants/events';
 import ChatInput from './ChatInput';
-import GooseLogo from './GooseLogo';
 import { ChatInputCard } from './ChatInputCard';
 import { ChatState } from '../types/chatState';
 import 'react-toastify/dist/ReactToastify.css';
@@ -221,8 +220,6 @@ export default function Hub({
   return (
     <div className="flex flex-col h-full min-h-0 items-center justify-center px-6 relative">
       <div className="w-full max-w-3xl">
-        <GooseLogo size="hero" hover={false} className="mb-4" />
-
         <div className="flex items-baseline gap-2 mb-1">
           <span className="text-6xl font-light text-text-primary tracking-tight tabular-nums">
             {time}

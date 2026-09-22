@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="2048" height="2048" viewBox="0 0 2048 2048" xmlns="http://www.w3.org/2000/svg">
-  <rect width="2048" height="2048" rx="420" fill="#fff7fb"/>
-  <text x="1024" y="1110" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="430" font-weight="500" fill="#123156">El</text>
-  <text x="1024" y="1455" text-anchor="middle"
-        font-family="Georgia, 'Times New Roman', serif"
-        font-size="430" font-weight="500" fill="#c02a83">Roi</text>
-  <circle cx="1024" cy="560" r="88" fill="#c02a83"/>
+  <defs>
+    <linearGradient id="background" x1="210" y1="196" x2="1840" y2="1850" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fbf6f9"/>
+      <stop offset="1" stop-color="#edf3ff"/>
+    </linearGradient>
+    <linearGradient id="leafFill" x1="536" y1="358" x2="1526" y2="1652" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#c02988"/>
+      <stop offset="0.48" stop-color="#26478d"/>
+      <stop offset="1" stop-color="#6fa6d9"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="38" stdDeviation="46" flood-color="#123156" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+  <rect width="2048" height="2048" rx="430" fill="url(#background)"/>
+  <g filter="url(#softShadow)" transform="translate(364 278) scale(2.74)">
+    <path
+      fill="url(#leafFill)"
+      d="M361 557.91C212.51 518.64 77.16 407.49 23.2 280.5C7.86 244.41 1.06 215.37 1.02 185.8C0.92 113.11 39.36 51.52 105.84 17.88C137.89 1.66 174.63 -3.52 212 2.92C245.53 8.7 278.96 24.36 308.53 48.15C329.83 65.29 356.13 95.72 376.41 126.7C440.35 224.38 467.83 352.98 452.97 485.03C449.99 511.58 448.96 516.43 446.25 516.82C444.65 517.05 442.9 515.91 440.13 512.82C434.69 506.75 314.3 361.94 293.54 336.5C284.12 324.95 271.71 309.2 265.97 301.5C254.86 286.6 242.65 273.03 241.45 274.23C239.73 275.93 248.46 295.27 260.56 316.62C270.72 334.54 278.93 351.24 363.68 526.32C372.01 543.53 377.99 557.07 377.81 558.32C377.36 561.49 374.24 561.41 361 557.91Z"/>
+  </g>
 </svg>

@@ -30,7 +30,6 @@ import {
 } from '../types/message';
 import { substituteParameters } from '../utils/parameterSubstitution';
 import { useAutoSubmit } from '../hooks/useAutoSubmit';
-import GooseLogo from './GooseLogo';
 import EnvironmentBadge from './GooseSidebar/EnvironmentBadge';
 import SessionActionsHeader from './SessionActionsHeader';
 import { isAcpRecovering, subscribeToAcpRecovery } from '../acp/acpConnection';
@@ -473,11 +472,7 @@ export default function BaseChat({
 
         {/* Chat container with sticky recipe header */}
         <div className="flex flex-col flex-1 min-h-0 relative">
-          {/* ElRoi watermark - top right */}
           <div className="absolute top-[14px] right-4 z-[60] flex flex-row items-center gap-1">
-            <div className="no-drag flex flex-row items-center gap-1">
-              <GooseLogo size="small" hover={false} />
-            </div>
             <EnvironmentBadge className="translate-y-px" />
           </div>
 
