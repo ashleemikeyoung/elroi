@@ -20,6 +20,7 @@ import { formatMessageTimestamp } from '../../utils/timeUtils';
 import { cn } from '../../utils';
 import type { ProjectGroup } from '../../utils/projectSessions';
 import { defineMessages, useIntl } from '../../i18n';
+import GooseLogo from '../GooseLogo';
 
 type StreamState = 'idle' | 'loading' | 'streaming' | 'error';
 
@@ -336,6 +337,10 @@ export const Navigation: React.FC<{
       className={cn('bg-background-primary outline-none flex flex-col h-full', className)}
     >
       <div className="h-[48px] no-drag" />
+
+      <div className="px-4 pb-3 no-drag flex items-center">
+        <GooseLogo size="default" hover={false} className="justify-start" />
+      </div>
 
       <div className="px-2 flex flex-col gap-0.5">
         {visibleItems.map((item) => (

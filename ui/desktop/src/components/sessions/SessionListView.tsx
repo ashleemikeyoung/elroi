@@ -83,7 +83,7 @@ const i18n = defineMessages({
   importNostrTitle: { id: 'sessions.importNostr.title', defaultMessage: 'Import Nostr Session' },
   importNostrDesc: {
     id: 'sessions.importNostr.description',
-    defaultMessage: 'Paste a Goose Nostr share link to fetch, decrypt, and import the session.',
+    defaultMessage: 'Paste an ElRoi Nostr share link to fetch, decrypt, and import the session.',
   },
   importNostrPlaceholder: {
     id: 'sessions.importNostr.placeholder',
