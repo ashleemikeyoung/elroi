@@ -3,7 +3,7 @@ import { applyThemeTokens, buildMcpHostStyles, themes } from '../theme/theme-tok
 import type { ThemeId, ThemeVariant } from '../theme/theme-tokens';
 import type { McpUiHostStyles } from '@modelcontextprotocol/ext-apps/app-bridge';
 
-type ThemePreference = 'light' | 'dark' | 'aura' | 'system';
+type ThemePreference = ThemeId | 'system';
 type ResolvedTheme = ThemeVariant;
 
 interface ThemeContextValue {
@@ -18,6 +18,18 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 
 function getSystemTheme(): ResolvedTheme {
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function isThemePreference(value: unknown): value is ThemePreference {
+  return (
+    value === 'system' ||
+    value === 'light' ||
+    value === 'dark' ||
+    value === 'aura' ||
+    value === 'pink' ||
+    value === 'grass' ||
+    value === 'ocean'
+  );
 }
 
 // Resolve a user preference to a concrete theme id. 'system' picks the light or
@@ -55,7 +67,8 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
           window.electron.getSetting('theme'),
         ]);
 
-        const preference: ThemePreference = useSystemTheme ? 'system' : savedTheme;
+        const preference: ThemePreference =
+          useSystemTheme || !isThemePreference(savedTheme) ? 'system' : savedTheme;
 
         setUserThemePreferenceState(preference);
         setResolvedThemeId(resolveThemeId(preference));

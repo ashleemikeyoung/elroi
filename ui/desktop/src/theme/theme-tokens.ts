@@ -258,6 +258,155 @@ const auraColorTokens: ColorTokens = {
   '--shadow-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.2)',
 };
 
+// ---------------------------------------------------------------------------
+// ElRoi orchestrator themes — colors & shadows
+// Ported from RAG/templates/index.html so desktop and orchestrator share the
+// same proofreader palette family.
+// ---------------------------------------------------------------------------
+const pinkColorTokens: ColorTokens = {
+  '--color-background-primary': '#faeef0',
+  '--color-background-secondary': '#f4e2e6',
+  '--color-background-tertiary': '#ecd4da',
+  '--color-background-inverse': '#2e1e24',
+  '--color-background-ghost': 'transparent',
+  '--color-background-info': '#b3187f',
+  '--color-background-danger': '#a8324f',
+  '--color-background-success': '#4a7256',
+  '--color-background-warning': '#b27f4a',
+  '--color-background-disabled': '#ebd3d9',
+
+  '--color-text-primary': '#2e1e24',
+  '--color-text-secondary': '#6b4f58',
+  '--color-text-tertiary': '#7c5e67',
+  '--color-text-inverse': '#faeef0',
+  '--color-text-ghost': '#7c5e67',
+  '--color-text-info': '#b3187f',
+  '--color-text-danger': '#a8324f',
+  '--color-text-success': '#4a7256',
+  '--color-text-warning': '#8b5f2d',
+  '--color-text-disabled': '#9f8790',
+
+  '--color-border-primary': '#e0c3cb',
+  '--color-border-secondary': '#ebd3d9',
+  '--color-border-tertiary': '#d3adb8',
+  '--color-border-inverse': '#2e1e24',
+  '--color-border-ghost': 'transparent',
+  '--color-border-info': '#b3187f',
+  '--color-border-danger': '#a8324f',
+  '--color-border-success': '#4a7256',
+  '--color-border-warning': '#b27f4a',
+  '--color-border-disabled': '#ebd3d9',
+
+  '--color-ring-primary': '#e0c3cb',
+  '--color-ring-secondary': '#d3adb8',
+  '--color-ring-inverse': '#faeef0',
+  '--color-ring-info': '#b3187f',
+  '--color-ring-danger': '#a8324f',
+  '--color-ring-success': '#4a7256',
+  '--color-ring-warning': '#b27f4a',
+
+  '--shadow-hairline': '0 0 0 1px rgba(46, 30, 36, 0.08)',
+  '--shadow-sm': '0 1px 2px 0 rgba(46, 30, 36, 0.08)',
+  '--shadow-md': '0 4px 6px -1px rgba(46, 30, 36, 0.12), 0 2px 4px -2px rgba(46, 30, 36, 0.08)',
+  '--shadow-lg': '0 10px 15px -3px rgba(46, 30, 36, 0.14), 0 4px 6px -4px rgba(46, 30, 36, 0.1)',
+};
+
+const grassColorTokens: ColorTokens = {
+  '--color-background-primary': '#1e4620',
+  '--color-background-secondary': '#275a29',
+  '--color-background-tertiary': '#316d33',
+  '--color-background-inverse': '#fff0a5',
+  '--color-background-ghost': 'transparent',
+  '--color-background-info': '#b64926',
+  '--color-background-danger': '#8e2800',
+  '--color-background-success': '#fff0a5',
+  '--color-background-warning': '#d8cc86',
+  '--color-background-disabled': '#3b673d',
+
+  '--color-text-primary': '#fff0a5',
+  '--color-text-secondary': '#eadf99',
+  '--color-text-tertiary': '#d8cc86',
+  '--color-text-inverse': '#1e4620',
+  '--color-text-ghost': '#d8cc86',
+  '--color-text-info': '#f0a17c',
+  '--color-text-danger': '#ffb090',
+  '--color-text-success': '#fff0a5',
+  '--color-text-warning': '#eadf99',
+  '--color-text-disabled': '#9f9a6a',
+
+  '--color-border-primary': '#47794a',
+  '--color-border-secondary': '#3b673d',
+  '--color-border-tertiary': '#568a59',
+  '--color-border-inverse': '#fff0a5',
+  '--color-border-ghost': 'transparent',
+  '--color-border-info': '#b64926',
+  '--color-border-danger': '#8e2800',
+  '--color-border-success': '#fff0a5',
+  '--color-border-warning': '#d8cc86',
+  '--color-border-disabled': '#3b673d',
+
+  '--color-ring-primary': '#47794a',
+  '--color-ring-secondary': '#568a59',
+  '--color-ring-inverse': '#1e4620',
+  '--color-ring-info': '#b64926',
+  '--color-ring-danger': '#8e2800',
+  '--color-ring-success': '#fff0a5',
+  '--color-ring-warning': '#d8cc86',
+
+  '--shadow-hairline': '0 0 0 1px rgba(0, 0, 0, 0.35)',
+  '--shadow-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.35)',
+  '--shadow-md': '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3)',
+  '--shadow-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.42), 0 4px 6px -4px rgba(0, 0, 0, 0.32)',
+};
+
+const oceanColorTokens: ColorTokens = {
+  '--color-background-primary': '#224fbc',
+  '--color-background-secondary': '#1d45a6',
+  '--color-background-tertiary': '#173b90',
+  '--color-background-inverse': '#ffffff',
+  '--color-background-ghost': 'transparent',
+  '--color-background-info': '#ffffff',
+  '--color-background-danger': '#ffd0c2',
+  '--color-background-success': '#ffffff',
+  '--color-background-warning': '#d5e1ff',
+  '--color-background-disabled': '#4f72cf',
+
+  '--color-text-primary': '#ffffff',
+  '--color-text-secondary': '#eaf0ff',
+  '--color-text-tertiary': '#d5e1ff',
+  '--color-text-inverse': '#224fbc',
+  '--color-text-ghost': '#d5e1ff',
+  '--color-text-info': '#ffffff',
+  '--color-text-danger': '#ffd0c2',
+  '--color-text-success': '#ffffff',
+  '--color-text-warning': '#d5e1ff',
+  '--color-text-disabled': '#9fb7f0',
+
+  '--color-border-primary': '#6f8ee0',
+  '--color-border-secondary': '#4f72cf',
+  '--color-border-tertiary': '#87a2eb',
+  '--color-border-inverse': '#ffffff',
+  '--color-border-ghost': 'transparent',
+  '--color-border-info': '#ffffff',
+  '--color-border-danger': '#ffd0c2',
+  '--color-border-success': '#ffffff',
+  '--color-border-warning': '#d5e1ff',
+  '--color-border-disabled': '#4f72cf',
+
+  '--color-ring-primary': '#6f8ee0',
+  '--color-ring-secondary': '#87a2eb',
+  '--color-ring-inverse': '#224fbc',
+  '--color-ring-info': '#ffffff',
+  '--color-ring-danger': '#ffd0c2',
+  '--color-ring-success': '#ffffff',
+  '--color-ring-warning': '#d5e1ff',
+
+  '--shadow-hairline': '0 0 0 1px rgba(0, 0, 0, 0.32)',
+  '--shadow-sm': '0 1px 2px 0 rgba(0, 0, 0, 0.32)',
+  '--shadow-md': '0 4px 6px -1px rgba(0, 0, 0, 0.38), 0 2px 4px -2px rgba(0, 0, 0, 0.28)',
+  '--shadow-lg': '0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3)',
+};
+
 // Aura is monospace-first — override the shared sans family.
 const auraFontTokens: Partial<Pick<ThemeTokens, BaseTokenKey>> = {
   '--font-sans': 'ui-monospace, "SFMono-Regular", "Menlo", "Cascadia Mono", "Segoe UI Mono", monospace',
@@ -270,6 +419,9 @@ const auraFontTokens: Partial<Pick<ThemeTokens, BaseTokenKey>> = {
 export const lightTokens: ThemeTokens = { ...baseTokens, ...lightColorTokens };
 export const darkTokens: ThemeTokens = { ...baseTokens, ...darkColorTokens };
 export const auraTokens: ThemeTokens = { ...baseTokens, ...auraFontTokens, ...auraColorTokens };
+export const pinkTokens: ThemeTokens = { ...baseTokens, ...pinkColorTokens };
+export const grassTokens: ThemeTokens = { ...baseTokens, ...grassColorTokens };
+export const oceanTokens: ThemeTokens = { ...baseTokens, ...oceanColorTokens };
 
 // ---------------------------------------------------------------------------
 // Theme registry — the set of selectable named themes.
@@ -277,7 +429,7 @@ export const auraTokens: ThemeTokens = { ...baseTokens, ...auraFontTokens, ...au
 // the token system; `tokens` is the map applied to :root. Adding a future theme
 // is a single entry here plus its token map above.
 // ---------------------------------------------------------------------------
-export type ThemeId = 'light' | 'dark' | 'aura';
+export type ThemeId = 'light' | 'dark' | 'aura' | 'pink' | 'grass' | 'ocean';
 export type ThemeVariant = 'light' | 'dark';
 
 interface ThemeDefinition {
@@ -289,6 +441,9 @@ export const themes: Record<ThemeId, ThemeDefinition> = {
   light: { variant: 'light', tokens: lightTokens },
   dark: { variant: 'dark', tokens: darkTokens },
   aura: { variant: 'dark', tokens: auraTokens },
+  pink: { variant: 'light', tokens: pinkTokens },
+  grass: { variant: 'dark', tokens: grassTokens },
+  ocean: { variant: 'dark', tokens: oceanTokens },
 };
 
 // ---------------------------------------------------------------------------
@@ -363,7 +518,9 @@ export function getResolvedTheme(): ThemeId {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
   const stored = localStorage.getItem('theme');
-  if (stored === 'aura') return 'aura';
+  if (stored === 'aura' || stored === 'pink' || stored === 'grass' || stored === 'ocean') {
+    return stored;
+  }
   return stored === 'dark' ? 'dark' : 'light';
 }
 
