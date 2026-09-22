@@ -74,6 +74,10 @@ impl EditTools {
     ) -> CallToolResult {
         let path = resolve_path(&params.path, working_dir);
 
+        if let Some(message) = binary_document_guard(&path) {
+            return CallToolResult::error(vec![visible_text(message)]);
+        }
+
         if let Some(parent) = path.parent() {
             if !parent.as_os_str().is_empty() && !parent.exists() {
                 if let Err(error) = fs::create_dir_all(parent) {
@@ -114,6 +118,10 @@ impl EditTools {
         working_dir: Option<&Path>,
     ) -> CallToolResult {
         let path = resolve_path(&params.path, working_dir);
+
+        if let Some(message) = binary_document_guard(&path) {
+            return CallToolResult::error(vec![visible_text(message)]);
+        }
 
         let content = match fs::read_to_string(&path) {
             Ok(c) => c,
@@ -209,6 +217,39 @@ fn apply_line_limit(content: &str, line: Option<u32>, limit: Option<u32>) -> Str
         .unwrap_or(lines.len())
         .min(lines.len());
     lines[start..end].concat()
+}
+
+/// Office documents and PDFs are zipped or binary packages. Writing plain text
+/// (often Markdown) to one of these paths produces a file that Word, Excel or
+/// PowerPoint reports as unreadable, and a text edit would corrupt a real one.
+/// Returns an explanation pointing the model at the right tool instead.
+pub fn binary_document_guard(path: &Path) -> Option<String> {
+    let extension = path.extension()?.to_str()?.to_ascii_lowercase();
+    let hint = match extension.as_str() {
+        "docx" | "docm" | "dotx" => {
+            "Use the `docx_tool` (Computer Controller extension) instead: \
+             `extract_text` to read it, and `update_doc` to create it or to append, \
+             replace or insert content."
+        }
+        "xlsx" | "xlsm" => {
+            "Use the `xlsx_tool` (Computer Controller extension) to read or update cells."
+        }
+        "pdf" => "Use the `pdf_tool` (Computer Controller extension) to read it.",
+        "doc" | "xls" | "ppt" | "pptx" | "odt" | "ods" | "odp" | "rtf" | "pages" | "numbers"
+        | "key" => {
+            "Write the content to a plain-text or Markdown file instead, or convert it \
+             with a shell command (for example `pandoc notes.md -o notes.docx`)."
+        }
+        _ => return None,
+    };
+    Some(format!(
+        "Refusing to write plain text to {}: .{} files are binary document packages, \
+         so writing text to one produces a file its application cannot open. {} \
+         If the Computer Controller extension is not enabled, ask the user to enable it.",
+        path.display(),
+        extension,
+        hint
+    ))
 }
 
 pub fn resolve_path(path: &str, working_dir: Option<&Path>) -> PathBuf {
@@ -508,5 +549,61 @@ mod tests {
             fs::read_to_string(dir.path().join("relative-edit.txt")).unwrap(),
             "after"
         );
+    }
+
+    #[test_case("paper.docx" ; "docx")]
+    #[test_case("Paper.DOCX" ; "uppercase docx")]
+    #[test_case("budget.xlsx" ; "xlsx")]
+    #[test_case("slides.pptx" ; "pptx")]
+    #[test_case("report.pdf" ; "pdf")]
+    fn test_file_write_refuses_binary_documents(name: &str) {
+        let dir = setup();
+        let path = dir.path().join(name);
+        let tools = EditTools::new();
+
+        let result = tools.file_write_with_cwd(
+            FileWriteParams {
+                path: path.to_string_lossy().to_string(),
+                content: "# Heading\n\n**Markdown** body".to_string(),
+            },
+            None,
+        );
+
+        assert!(result.is_error.unwrap_or(false));
+        assert!(extract_text(&result).contains("Refusing to write plain text"));
+        assert!(!path.exists(), "no file should be created");
+    }
+
+    #[test]
+    fn test_file_write_docx_error_points_to_docx_tool() {
+        let message = binary_document_guard(Path::new("/tmp/Topic5 DQ2.docx")).unwrap();
+        assert!(message.contains("docx_tool"));
+    }
+
+    #[test]
+    fn test_file_edit_refuses_binary_documents() {
+        let dir = setup();
+        let path = dir.path().join("paper.docx");
+        fs::write(&path, b"PK\x03\x04 binary").unwrap();
+        let tools = EditTools::new();
+
+        let result = tools.file_edit_with_cwd(
+            FileEditParams {
+                path: path.to_string_lossy().to_string(),
+                before: "binary".to_string(),
+                after: "text".to_string(),
+            },
+            None,
+        );
+
+        assert!(result.is_error.unwrap_or(false));
+        assert_eq!(fs::read(&path).unwrap(), b"PK\x03\x04 binary");
+    }
+
+    #[test]
+    fn test_binary_document_guard_allows_text_files() {
+        assert!(binary_document_guard(Path::new("notes.md")).is_none());
+        assert!(binary_document_guard(Path::new("Makefile")).is_none());
+        assert!(binary_document_guard(Path::new("draft.docx.md")).is_none());
     }
 }

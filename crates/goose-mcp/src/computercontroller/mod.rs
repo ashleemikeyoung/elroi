@@ -134,7 +134,8 @@ pub struct DocxUpdateParams {
     /// Update mode (default: append)
     #[serde(default)]
     pub mode: DocxUpdateMode,
-    /// Text to replace (required for replace mode)
+    /// Exact text to replace, copied from extract_text and within one paragraph
+    /// (required for replace mode). Only these words change.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub old_text: Option<String>,
     /// Heading level for structured mode (e.g., 'Heading1', 'Heading2')
@@ -149,7 +150,8 @@ pub struct DocxUpdateParams {
     /// Image height in pixels (optional)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub height: Option<u32>,
-    /// Styling options for the text
+    /// Styling options for new text (append, structured, add_image). Ignored in
+    /// replace mode, where the replacement keeps the formatting of the text it replaces.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub style: Option<DocxTextStyle>,
 }
@@ -766,14 +768,20 @@ impl ComputerControllerServer {
             Process DOCX files to extract text and create/update documents.
             Supports operations:
             - extract_text: Extract all text content and structure (headings, TOC) from the DOCX
-            - update_doc: Create a new DOCX or update existing one with provided content
+            - update_doc: Create a new DOCX or update existing one with provided content.
+              Existing documents are edited in place: formatting, tables, footnotes, headers,
+              images and page setup are preserved.
               Modes:
               - append: Add content to end of document (default)
-              - replace: Replace specific text with new content
+              - replace: Replace exactly the words in params.old_text with content, keeping the
+                formatting of the surrounding text. Copy old_text word-for-word from
+                extract_text, keep it within one paragraph, and include enough words that it
+                matches only one place. Newlines in content start new paragraphs.
               - structured: Add content with specific heading level and styling
               - add_image: Add an image to the document (with optional caption)
 
             Use this when there is a .docx file that needs to be processed or created.
+            Never write a .docx with a plain-text file writer; Word cannot open the result.
         "
     )]
     pub async fn docx_tool(

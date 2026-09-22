@@ -5474,6 +5474,7 @@ dependencies = [
  "tracing-appender",
  "tracing-subscriber",
  "umya-spreadsheet",
+ "zip",
 ]
 
 [[package]]

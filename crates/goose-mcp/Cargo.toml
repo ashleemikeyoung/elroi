@@ -35,6 +35,7 @@ include_dir = { workspace = true }
 once_cell = { workspace = true }
 lopdf = { version = "0.45", default-features = false }
 docx-rs = { version = "0.4.18", default-features = false, features = ["image"] }
+zip = { workspace = true }
 image = { version = "0.24.4", default-features = false, features = ["bmp", "dds", "dxt", "farbfeld", "gif", "hdr", "ico", "jpeg", "jpeg_rayon", "openexr", "png", "pnm", "tga", "tiff", "webp"] }
 umya-spreadsheet = { version = "3", default-features = false }
 shell-words = { workspace = true }
