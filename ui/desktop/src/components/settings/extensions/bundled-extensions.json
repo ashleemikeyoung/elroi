@@ -47,7 +47,7 @@
     "id": "rag",
     "name": "rag",
     "display_name": "ElRoi RAG",
-    "description": "Search, read, summarize, and ask questions over ElRoi's local RAG index.",
+    "description": "ElRoi's bundled local RAG MCP server. Use it to connect to RAG, verify indexed documents, list projects, search local documents, read specific files, rescan the documents folder, and answer questions from the private local index.",
     "enabled": true,
     "type": "stdio",
     "cmd": "/opt/anaconda3/envs/rag/bin/python",
