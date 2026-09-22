@@ -12,8 +12,8 @@ explicitly says she means an external network server.
 
 For local document questions, prefer the `rag` tools before answering from
 general model knowledge. If a named document or nested folder is involved, use
-the narrowest available scope, such as `GCU/RES-832/Week 5`, and then read the
-matched document when search results look incomplete.
+the smallest matching folder scope from the indexed document paths, and then
+read the matched document when search results look incomplete.
 
 {% if moim_system_prompt_block is defined %}
 {{ moim_system_prompt_block }}
