@@ -7,14 +7,9 @@ interface GooseLogoProps {
 }
 
 /**
- * The ElRoi wordmark: "ElRoi" set in the brand serif with a leaf ahead of it
- * and the trademark after, ported from the ElRoi web app (templates/index.html
- * in the RAG project) so both surfaces carry the same mark.
- *
- * It is live text rather than art, which is what lets it pick up each theme's
- * ink and blue for free. Every proportion below is expressed in em off the
- * wordmark's own font size, so the leaf, the small-caps "Roi", and the raised
- * trademark hold their relationship at any size.
+ * The ElRoi wordmark: the brand leaf plus "ElRoi" with no visual word break.
+ * Keep this as live vector/text so it can follow the current theme, but avoid
+ * inline baseline offsets; those clipped the leaf in the sidebar on some builds.
  */
 
 const LEAF_PATH =
@@ -29,6 +24,12 @@ const SIZES = {
   hero: '3.45rem',
 } as const;
 
+const LEAF_SIZES = {
+  small: '12px',
+  default: '19px',
+  hero: '2.7rem',
+} as const;
+
 export default function GooseLogo({
   className = '',
   size = 'default',
@@ -38,13 +39,13 @@ export default function GooseLogo({
     <div
       className={cn(
         className,
-        'relative flex items-center',
+        'relative inline-flex items-center',
         hover && 'group/with-hover'
       )}
     >
       <span
         className={cn(
-          'whitespace-nowrap text-[#16191a] dark:text-[#e6e8e3]',
+          'inline-flex items-center whitespace-nowrap text-[#16191a] dark:text-[#e6e8e3]',
           'transition-opacity duration-300',
           hover && 'group-hover/with-hover:opacity-90'
         )}
@@ -53,22 +54,19 @@ export default function GooseLogo({
           fontSize: SIZES[size],
           fontWeight: 400,
           lineHeight: 1,
-          letterSpacing: '0.01em',
+          letterSpacing: 0,
         }}
       >
         <svg
           viewBox="0 0 457 562"
           aria-hidden="true"
           focusable="false"
-          className="text-[#26478d] dark:text-[#8fabe0]"
+          className="mr-[0.28em] shrink-0 text-[#26478d] dark:text-[#8fabe0]"
           style={{
-            fontSize: '.78em',
-            height: '.78em',
+            height: LEAF_SIZES[size],
             width: 'auto',
             fill: 'currentColor',
-            marginRight: '.28em',
-            verticalAlign: '.52em',
-            display: 'inline',
+            display: 'block',
           }}
         >
           <path fill="currentColor" d={LEAF_PATH} />
@@ -76,7 +74,7 @@ export default function GooseLogo({
         El
         <span
           className="text-[#26478d] dark:text-[#8fabe0]"
-          style={{ fontVariantCaps: 'small-caps', letterSpacing: '0.01em' }}
+          style={{ fontVariantCaps: 'small-caps', letterSpacing: 0 }}
         >
           Roi
         </span>
