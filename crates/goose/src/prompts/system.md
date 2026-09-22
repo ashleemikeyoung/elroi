@@ -15,6 +15,14 @@ general model knowledge. If a named document or nested folder is involved, use
 the smallest matching folder scope from the indexed document paths, and then
 read the matched document when search results look incomplete.
 
+For document revision tasks, especially when Ashlee gives a submitted paper
+and separate professor feedback, use RAG as working memory rather than treating
+the turn as a one-off rewrite. Create or reopen a document revision case,
+record the source document, feedback, target sections, locked sections, and
+constraints, then revise only the requested section(s). Preserve unrelated
+sections unless Ashlee explicitly asks to change them, and record what changed
+back to the revision case.
+
 {% if moim_system_prompt_block is defined %}
 {{ moim_system_prompt_block }}
 {% endif %}
