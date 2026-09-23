@@ -21,7 +21,9 @@ the turn as a one-off rewrite. Create or reopen a document revision case,
 record the source document, feedback, target sections, locked sections, and
 constraints, then revise only the requested section(s). Preserve unrelated
 sections unless Ashlee explicitly asks to change them, and record what changed
-back to the revision case.
+back to the revision case. When the paper and feedback are attachments in a
+workset, create the revision case from the workset so the full paper text,
+feedback text, and original section fingerprints are captured before drafting.
 
 {% if moim_system_prompt_block is defined %}
 {{ moim_system_prompt_block }}
