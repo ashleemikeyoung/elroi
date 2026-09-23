@@ -1,6 +1,5 @@
 import GooseLogo from './GooseLogo';
-import AnimatedIcons from './AnimatedIcons';
-import FlyingBird from './FlyingBird';
+import BreathingLeaf from './BreathingLeaf';
 import { ChatState } from '../types/chatState';
 import { defineMessages, useIntl } from '../i18n';
 
@@ -40,16 +39,19 @@ const i18n = defineMessages({
   },
 });
 
+/* Every busy state shares one indicator. Swapping marks mid-wait only drew
+   attention to the machinery; the work is the same work whichever phase it is
+   in, so the leaf just keeps breathing until ElRoi has something to say. */
+const BUSY_INDICATOR = <BreathingLeaf />;
+
 const STATE_ICONS: Record<ChatState, React.ReactNode> = {
-  [ChatState.LoadingConversation]: <AnimatedIcons className="flex-shrink-0" cycleInterval={600} />,
-  [ChatState.Thinking]: <AnimatedIcons className="flex-shrink-0" cycleInterval={600} />,
-  [ChatState.Streaming]: <FlyingBird className="flex-shrink-0" cycleInterval={150} />,
-  [ChatState.WaitingForUserInput]: (
-    <AnimatedIcons className="flex-shrink-0" cycleInterval={600} variant="waiting" />
-  ),
-  [ChatState.Compacting]: <AnimatedIcons className="flex-shrink-0" cycleInterval={600} />,
+  [ChatState.LoadingConversation]: BUSY_INDICATOR,
+  [ChatState.Thinking]: BUSY_INDICATOR,
+  [ChatState.Streaming]: BUSY_INDICATOR,
+  [ChatState.WaitingForUserInput]: BUSY_INDICATOR,
+  [ChatState.Compacting]: BUSY_INDICATOR,
   [ChatState.Idle]: <GooseLogo size="small" hover={false} />,
-  [ChatState.RestartingAgent]: <AnimatedIcons className="flex-shrink-0" cycleInterval={600} />,
+  [ChatState.RestartingAgent]: BUSY_INDICATOR,
 };
 
 const STATE_MESSAGE_KEYS: Record<ChatState, keyof typeof i18n> = {

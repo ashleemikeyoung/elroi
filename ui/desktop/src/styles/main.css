@@ -1023,3 +1023,65 @@ pre:has(> code.bg-inline-code) {
   --elroi-logo-accent: #d5e1ff;
   --elroi-logo-muted: #9fb7f0;
 }
+
+/* --- ElRoi busy indicator ------------------------------------------------ */
+/* The brand's own leaf, breathing, instead of a spinner or a rotating icon
+   set. Same mark the wordmark carries, so a wait reads as ElRoi thinking
+   rather than as chrome bolted on. The stem end is the pivot, so it sways
+   from where it would be attached. Mirrors .run-leaf in the ElRoi web app. */
+.elroi-leaf-breathe {
+  transform-origin: 14% 92%;
+  animation: elroi-leaf-breathe 1.9s ease-in-out infinite;
+}
+
+/* Tuned for 16px in a chat row rather than 22px in the web app's run bar.
+   Three deliberate departures from .run-leaf there:
+
+   The peak sits at 42%, not 50%. A symmetric loop reads as a metronome; a
+   quicker rise and a longer settle reads as breath. This is the whole
+   difference between alive and mechanical, and it costs nothing.
+
+   Rotation is roughly halved. At this size a 13-degree sweep moves the tip
+   about two pixels, which registers as jitter in the corner of the eye while
+   still taxing attention. Scale carries the motion instead -- it changes the
+   silhouette's area, which stays legible when the angle no longer does.
+
+   The opacity floor lifts from 0.4 to 0.55. At 22px a deep fade is a slow
+   breath; at 16px next to 12px text it is a flicker, and a mark that keeps
+   half-vanishing during a long wait is a mark you end up watching. */
+@keyframes elroi-leaf-breathe {
+  0% {
+    transform: rotate(-4deg) scale(0.94);
+    opacity: 0.55;
+  }
+  42% {
+    transform: rotate(3deg) scale(1.06);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-4deg) scale(0.94);
+    opacity: 0.55;
+  }
+}
+
+/* This block has to sit after the global reduced-motion rules and carry
+   !important. That rule collapses every animation to 0.01ms with a single
+   iteration, which would strand the leaf dim and tilted on its first
+   keyframe -- it would read as broken rather than as still. A slow opacity
+   pulse with no movement is the honest fallback, same as the web app's. */
+@media (prefers-reduced-motion: reduce) {
+  .elroi-leaf-breathe {
+    animation: elroi-leaf-fade 2.4s ease-in-out infinite !important;
+    transform: none !important;
+  }
+}
+
+@keyframes elroi-leaf-fade {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
