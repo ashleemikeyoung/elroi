@@ -106,13 +106,14 @@
 
 ## Summary of Changes Made
 
-### 1. Memory Extension Enabled
-- ✅ Changed `"enabled": false` to `"enabled": true` in `bundled-extensions.json`
+### 1. Memory Extension Enabled ✅
+- Changed `"enabled": false` to `"enabled": true` in `bundled-extensions.json`
+- The Rust memory MCP server is now activated automatically when sessions start
 
-### 2. RAG Paths Fixed
-- ✅ Changed `cmd` from hardcoded `/opt/anaconda3/envs/rag/bin/python` to portable `python3`
-- ✅ Changed `args` from hardcoded `/Users/ash/Development/RAG/mcp_server.py` to `${GOOSE_PATH}/../../Development/RAG/mcp_server.py`
-- ✅ Added `env_keys` for `LIBSQL_URL` and `LIBSQL_AUTH_TOKEN` environment variables
+### 2. RAG Paths Fixed ✅
+- Changed `cmd` from hardcoded `/opt/anaconda3/envs/rag/bin/python` to portable `python3`
+- Changed `args` from hardcoded `/Users/ash/Development/RAG/mcp_server.py` to `${GOOSE_PATH}/../../Development/RAG/mcp_server.py`
+- Added `env_keys` for `LIBSQL_URL` and `LIBSQL_AUTH_TOKEN` environment variables
 
 ### 3. Environment Variables
 - ✅ The RAG extension now accepts `LIBSQL_URL` and `LIBSQL_AUTH_TOKEN` as environment variables
