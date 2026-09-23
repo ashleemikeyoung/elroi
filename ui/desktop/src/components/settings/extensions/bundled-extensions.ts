@@ -120,8 +120,14 @@ export async function syncBundledExtensions(
           };
       }
 
-      // Add or update the extension, preserving enabled state if it exists
-      const enabled = existingExt ? existingExt.enabled : bundledExt.enabled;
+      // Add or update the extension
+      // For bundled extensions:
+      // - If it doesn't exist: use bundled enabled state
+      // - If it exists and is bundled: preserve existing enabled state (user may have disabled it intentionally)
+      // - If it exists but is not bundled: don't override (user may have created it manually)
+      const enabled = existingExt && isBundledExtension(existingExt)
+        ? existingExt.enabled
+        : bundledExt.enabled;
       await addExtensionFn(bundledExt.name, extConfig, enabled);
     }
   } catch (error) {
