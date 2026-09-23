@@ -145,3 +145,14 @@
 1. Your RAG server's `memory_client.py` connects to libsql
 2. Session metadata, citations, and document registry are stored there
 3. Environment variables control the connection
+
+---
+
+## ✅ Build and Install Complete
+
+**Rust CLI Binary Installed:**
+- `goose` at `/Users/ash/.local/bin/goose` (v1.51.0)
+- `elroi` at `/Users/ash/.local/bin/elroi` (v1.51.0)
+- Built with `cargo build --release`
+- Memory MCP enabled by default in bundled-extensions.json
+- RAG paths fixed with environment variable support
