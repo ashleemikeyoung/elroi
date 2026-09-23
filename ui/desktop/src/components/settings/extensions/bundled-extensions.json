@@ -52,7 +52,10 @@
     "type": "stdio",
     "cmd": "python3",
     "args": ["${GOOSE_PATH}/../../Development/RAG/mcp_server.py"],
-    "env_keys": ["LIBSQL_URL", "LIBSQL_AUTH_TOKEN"],
+    "env_keys": ["DOCUMENTS_FOLDER", "LIBSQL_URL", "LIBSQL_AUTH_TOKEN"],
+    "envs": {
+      "DOCUMENTS_FOLDER": "${GOOSE_PATH}/../../Development/RAG/documents"
+    },
     "timeout": 300,
     "bundled": true
   },
