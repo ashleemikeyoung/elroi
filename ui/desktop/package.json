@@ -1,7 +1,7 @@
 {
   "name": "elroi-app",
   "productName": "ElRoi",
-  "version": "1.51.2",
+  "version": "1.51.3",
   "description": "ElRoi local AI workspace, powered by goose",
   "engines": {
     "node": "^24.10.0",
