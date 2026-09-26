@@ -52,7 +52,7 @@
     "type": "stdio",
     "cmd": "/Users/ash/Development/RAG/.venv-offlineimap/bin/python",
     "args": ["/Users/ash/Development/RAG/mcp_server.py"],
-    "env_keys": ["DOCUMENTS_FOLDER", "LIBSQL_URL", "LIBSQL_AUTH_TOKEN"],
+    "env_keys": ["LIBSQL_URL", "LIBSQL_AUTH_TOKEN"],
     "envs": {
       "DOCUMENTS_FOLDER": "/Users/ash/Development/RAG/documents"
     },
