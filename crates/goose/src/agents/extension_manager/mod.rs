@@ -576,9 +576,13 @@ impl ExtensionManager {
                     envs.insert("AGENT_SESSION_ID".to_string(), sid.to_string());
                 }
                 let working_dir = cwd.as_deref().map(PathBuf::from).unwrap_or(working_dir);
-                Box::new(
-                    stdio::connect(cmd, args, envs, container, ctx(*timeout, working_dir)).await?,
-                )
+                let mut context = ctx(*timeout, working_dir);
+                // The bundled Python RAG server supports initialize, but rejects server/discover.
+                if sanitized_name == "rag" && context.capabilities.protocol_version.is_none() {
+                    context.capabilities.protocol_version =
+                        Some(rmcp::model::ProtocolVersion::V_2025_11_25);
+                }
+                Box::new(stdio::connect(cmd, args, envs, container, context).await?)
             }
         };
 

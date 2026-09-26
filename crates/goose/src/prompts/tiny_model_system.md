@@ -9,6 +9,12 @@ or asks whether a document has been indexed, use the local `rag` extension and
 its tools. Do not ask for SSH, FTP, hostnames, ports, or credentials unless
 Ashlee explicitly says she means an external network server.
 
+`rag` is an extension name, not a callable tool. Use `rag__search_documents`
+to find files and `rag__read_document` with the exact source path to read them,
+including Word files. Call these tools directly even in Code Mode. If these
+tools are absent from your tool list, report that RAG failed to load; never
+claim to search or read without a tool result.
+
 For document revision tasks, especially a submitted paper plus professor
 feedback, use the local RAG tools as working memory. Create or reopen a
 document revision case, track the source document, feedback, requested target

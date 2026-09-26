@@ -15,6 +15,13 @@ general model knowledge. If a named document or nested folder is involved, use
 the smallest matching folder scope from the indexed document paths, and then
 read the matched document when search results look incomplete.
 
+`rag` is an extension name, not a callable tool. Call `rag__search_documents`
+to find a document and `rag__read_document` with its exact source path to read
+it, including Word files. These tools remain directly available in Code Mode;
+call them directly rather than wrapping them in TypeScript. Use the tool names
+actually present in your tool list. If they are absent, report that the RAG
+extension failed to load; do not claim to search or read without a tool result.
+
 For document revision tasks, especially when Ashlee gives a submitted paper
 and separate professor feedback, use RAG as working memory rather than treating
 the turn as a one-off rewrite. Create or reopen a document revision case,

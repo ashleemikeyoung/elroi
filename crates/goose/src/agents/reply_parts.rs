@@ -259,7 +259,12 @@ pub(crate) fn prepare_inference_tools(
                     // by pctx, so we want to omit all non-first-class extensions
                     // from the standard tool list
                     if crate::agents::extension_manager::get_tool_owner(&tool).is_some_and(
-                        |owner| crate::agents::extension_manager::is_first_class_extension(&owner),
+                        |owner| {
+                            owner == "rag"
+                                || crate::agents::extension_manager::is_first_class_extension(
+                                    &owner,
+                                )
+                        },
                     ) || crate::agents::extension_manager::get_tool_resource_uri(&tool).is_some()
                     {
                         Some(tool)
@@ -1714,6 +1719,22 @@ mod tests {
             tool = tool.with_meta(rmcp::model::MetaObject(obj));
         }
         tool
+    }
+
+    #[test]
+    #[cfg(feature = "code-mode")]
+    fn test_rag_reader_remains_visible_in_code_mode() {
+        let tool = Tool::new(
+            "rag__read_document",
+            "Read a document",
+            object!({ "type": "object" }),
+        )
+        .with_meta(rmcp::model::MetaObject(
+            object!({ "goose_extension": "rag" }),
+        ));
+        let tools = prepare_inference_tools(vec![tool], true);
+        assert_eq!(tools.len(), 1);
+        assert_eq!(tools[0].name, "rag__read_document");
     }
 
     #[test]
