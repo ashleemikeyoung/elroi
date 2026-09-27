@@ -50,13 +50,14 @@
     "description": "ElRoi's bundled local RAG MCP server. Use it to connect to RAG, verify indexed documents, list projects, search local documents, read specific files, rescan the documents folder, and answer questions from the private local index.",
     "enabled": true,
     "type": "stdio",
-    "cmd": "/Users/ash/Development/RAG/.venv-offlineimap/bin/python",
-    "args": ["/Users/ash/Development/RAG/mcp_server.py"],
+    "cmd": "/opt/anaconda3/bin/conda",
+    "args": ["run", "-n", "rag", "--no-capture-output", "python", "/Users/ash/Development/RAG/mcp_server.py"],
     "env_keys": ["LIBSQL_URL", "LIBSQL_AUTH_TOKEN"],
     "envs": {
       "DOCUMENTS_FOLDER": "/Users/ash/Development/RAG/documents"
     },
     "timeout": 300,
+    "cwd": "/Users/ash/Development/RAG",
     "bundled": true
   },
   {
